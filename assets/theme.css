@@ -22,13 +22,20 @@
 
 * { box-sizing: border-box; }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
-               "Pretendard Variable", "Apple SD Gothic Neo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont,
+               "Apple SD Gothic Neo", "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .mono {
@@ -51,7 +58,7 @@ svg.qr-motif rect { fill: currentColor; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: "SF Pro Display", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Pretendard", -apple-system, "Helvetica Neue", Arial, sans-serif;
   font-weight: 700;
   letter-spacing: -0.02em;
   font-size: 0.95rem;
@@ -179,12 +186,11 @@ h1.name {
 }
 
 .role {
-  font-size: clamp(1.05rem, 6.8vw, 2.6rem);
+  font-size: clamp(1.5rem, 5.5vw, 2.6rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.25;
   letter-spacing: -0.02em;
   margin: 1.6rem 0 0;
-  white-space: nowrap;
 }
 
 .pitch {
@@ -611,5 +617,4 @@ footer .footer-bottom {
 @media (max-width: 520px) {
   .hero-top { margin-bottom: 2rem; }
   .shot-strip { grid-template-columns: 1fr; }
-  .role { white-space: normal; }
 }
