@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>루트 · JJPG</title>
+<meta name="description" content="전주대학교 생활권 혼잡도를 블록 단위로 보여주고, 시간표를 기반으로 다음 수업 전 들를 곳을 추천하는 모바일 우선 웹 서비스.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body>
+
+<nav class="catnav">
+  <div class="catnav-inner">
+    <span class="mk-mark">JJPG</span>
+    <div class="catnav-scroll">
+      <a href="#sec-overview">개요</a>
+      <a href="#sec-problem">문제</a>
+      <a href="#sec-solution">솔루션</a>
+      <a href="#sec-features">핵심 기능</a>
+      <a href="#sec-stack">기술 스택</a>
+      <a href="#sec-team">팀</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top">
+      <span class="mk-mark">JJPG</span>
+      <svg class="qr-motif" width="62" height="22" viewBox="0 0 62 22" aria-hidden="true">
+        <rect x="0" y="0" width="6" height="6"/><rect x="16" y="0" width="6" height="6"/><rect x="24" y="0" width="6" height="6"/><rect x="48" y="0" width="6" height="6"/>
+        <rect x="8" y="8" width="6" height="6"/><rect x="32" y="8" width="6" height="6"/><rect x="40" y="8" width="6" height="6"/><rect x="56" y="8" width="6" height="6"/>
+        <rect x="0" y="16" width="6" height="6"/><rect x="16" y="16" width="6" height="6"/><rect x="32" y="16" width="6" height="6"/><rect x="48" y="16" width="6" height="6"/>
+      </svg>
+    </div>
+    <p class="eyebrow">전주대학교 생활권 의사결정 서비스</p>
+    <h1 class="name">JJPG
+      <span class="name-en">전주대 생활권 혼잡도 지도</span>
+    </h1>
+    <p class="role">다음 수업까지, 어디가 가장 낫습니까</p>
+    <p class="pitch">전주대학교 생활권의 혼잡도를 블록 단위로 보여주고, 시간표를 등록하면 <span class="hl">다음 수업 전 들를 만한 곳</span>을 이동시간·대기·혼잡도까지 계산해 추천합니다.</p>
+    <p class="meta-line mono">루트 · React 19 · TypeScript · Leaflet · OSRM</p>
+  </header>
+</div>
+
+<section class="work-intro" id="sec-overview">
+  <div class="wrap">
+    <p class="eyebrow mono">Overview</p>
+    <h2>다음 수업까지의 여정을 계산합니다</h2>
+    <div class="process-strip">
+      <span>시간표 등록</span><span class="sep">→</span>
+      <span>다음 강의 탐색</span><span class="sep">→</span>
+      <span>출발지 확인</span><span class="sep">→</span>
+      <span>혼잡도 조회</span><span class="sep">→</span>
+      <span>대기·이용시간 추정</span><span class="sep">→</span>
+      <span>추천 순위 산정</span><span class="sep">→</span>
+      <span>보행 경로 안내</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <main>
+
+    <section class="category" id="sec-problem">
+      <div class="category-head">
+        <span class="cat-num mono">01</span>
+        <h2>문제</h2>
+      </div>
+      <div class="grid">
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">01</span>
+            <span class="status outline">공강 시간</span>
+          </div>
+          <h3 class="card-title">도착해서야 만석을 안다</h3>
+          <p class="card-tags mono"><span>혼잡</span><span>재이동</span></p>
+          <p class="card-desc">점심시간이나 짧은 공강에 식당·카페에 도착한 뒤에야 <span class="hl">혼잡·만석을 알게 되고</span>, 다시 다른 곳으로 이동하며 시간을 더 쓴다.</p>
+        </a>
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">02</span>
+            <span class="status outline">시간 판단</span>
+          </div>
+          <h3 class="card-title">"갈 수 있는가"를 미리 알 수 없다</h3>
+          <p class="card-tags mono"><span>이동시간</span><span>불확실성</span></p>
+          <p class="card-desc">가까워 보이는 곳이 다음 강의 건물과 반대 방향일 수 있고, 대기·이용시간까지 더하면 <span class="hl">다음 수업에 늦을지</span> 미리 판단하기 어렵다. 기존 지도는 위치와 리뷰는 보여줘도 "지금 실제로 이용하기 좋은가"엔 답하지 않는다.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="category" id="sec-solution">
+      <div class="category-head">
+        <span class="cat-num mono">02</span>
+        <h2>솔루션</h2>
+      </div>
+      <div class="grid">
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">01</span>
+            <span class="status filled">MVP</span>
+          </div>
+          <h3 class="card-title">출발지 → 상가 → 다음 강의 건물, 전체 여정 계산</h3>
+          <p class="card-tags mono"><span>이동시간</span><span>대기시간</span><span>이용시간</span><span>안전 여유시간</span></p>
+          <p class="card-desc">단순 최단거리 추천이 아니라, 상가에 들렀다가 다음 강의까지 갈 수 있는 <span class="hl">전체 여정의 총 필요시간</span>을 계산해 추천 순위를 정한다. 시간이 부족한 장소도 지우지 않고 점수만 낮춰 하위에 남긴다.</p>
+        </a>
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">02</span>
+            <span class="status filled">차별성</span>
+          </div>
+          <h3 class="card-title">검증되지 않은 데이터는 넣지 않는다</h3>
+          <p class="card-tags mono"><span>OSM</span><span>Nominatim</span><span>Overpass</span></p>
+          <p class="card-desc"><span class="hl">있어 보이는 데이터보다 확인 가능한 데이터</span>를 남긴다는 원칙으로 상호 16곳을 OSM·팀 상권조사·Nominatim 역지오코딩과 교차검증했고, 건물 284개는 단일 소스(campusBuildingFootprints.json)로만 관리해 좌표 불일치를 제거했다. 혼잡도·대기시간은 Mock 데이터이며 화면에 "시연" 배지로 명시한다.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="category" id="sec-features">
+      <div class="category-head">
+        <span class="cat-num mono">03</span>
+        <h2>핵심 기능</h2>
+      </div>
+      <div class="grid">
+
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">01</span>
+            <span class="status filled">구현됨</span>
+          </div>
+          <h3 class="card-title">혼잡도 지도</h3>
+          <p class="card-tags mono"><span>Leaflet</span><span>6개 블록</span></p>
+          <p class="card-desc">생활권 상권 블록의 혼잡도를 지도 폴리곤과 목록 배지(<span class="hl">여유=초록/보통=노랑/혼잡=빨강</span>)로 표시한다.</p>
+          <p class="card-more mono">자세히 보기 →</p>
+        </a>
+
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">02</span>
+            <span class="status filled">구현됨</span>
+          </div>
+          <h3 class="card-title">시간표 & 다음 수업 추천</h3>
+          <p class="card-tags mono"><span>tesseract.js</span><span>OCR</span></p>
+          <p class="card-desc">시간표를 수동 입력하거나 이미지 업로드로 자동 인식하고, <span class="hl">"다음 수업까지 갈 수 있는 곳"</span>을 시간 여유 기준으로 추천한다. 캠퍼스 건물(강의동)은 추천 후보에서 제외된다.</p>
+          <p class="card-more mono">자세히 보기 →</p>
+        </a>
+
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">03</span>
+            <span class="status filled">구현됨</span>
+          </div>
+          <h3 class="card-title">실제 보행 경로 안내</h3>
+          <p class="card-tags mono"><span>OSRM</span><span>routing-machine</span></p>
+          <p class="card-desc">leaflet-routing-machine + OSRM 보행자 프로파일로 <span class="hl">실제 경로</span>를 계산한다. 장소를 선택하면 자동으로 목적지가 되어 경로가 그려진다.</p>
+          <p class="card-more mono">자세히 보기 →</p>
+        </a>
+
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">04</span>
+            <span class="status filled">구현됨</span>
+          </div>
+          <h3 class="card-title">자유 출발지 선택</h3>
+          <p class="card-tags mono"><span>GPS</span><span>RouteOrigin</span></p>
+          <p class="card-desc">현재 위치 / 지도에서 선택 / 검색한 장소 / 캠퍼스 건물, 네 가지 출발지 중 선택 가능. <span class="hl">GPS가 실패해도 조용히 대체하지 않고</span> 실패 이유를 보여준다.</p>
+          <p class="card-more mono">자세히 보기 →</p>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="category" id="sec-stack">
+      <div class="category-head">
+        <span class="cat-num mono">04</span>
+        <h2>기술 스택</h2>
+      </div>
+      <div class="grid">
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">01</span>
+          </div>
+          <h3 class="card-title">Frontend</h3>
+          <p class="card-tags mono"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind CSS v4</span><span>Zustand</span></p>
+        </a>
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">02</span>
+          </div>
+          <h3 class="card-title">지도 · 경로</h3>
+          <p class="card-tags mono"><span>Leaflet</span><span>react-leaflet</span><span>leaflet-routing-machine</span><span>OSRM</span></p>
+        </a>
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">03</span>
+          </div>
+          <h3 class="card-title">데이터 · 배포</h3>
+          <p class="card-tags mono"><span>tesseract.js</span><span>Cloudflare Pages</span><span>Wrangler</span></p>
+        </a>
+      </div>
+    </section>
+
+    <section class="category" id="sec-team">
+      <div class="category-head">
+        <span class="cat-num mono">05</span>
+        <h2>팀</h2>
+      </div>
+      <div class="grid">
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">01</span>
+          </div>
+          <h3 class="card-title">[이름]</h3>
+          <p class="card-tags mono"><span>[역할]</span></p>
+          <p class="card-desc">[한 줄 소개]</p>
+        </a>
+        <a class="card" href="#">
+          <div class="card-top">
+            <span class="card-num mono">02</span>
+          </div>
+          <h3 class="card-title">[이름]</h3>
+          <p class="card-tags mono"><span>[역할]</span></p>
+          <p class="card-desc">[한 줄 소개]</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span class="mk-mark large">JJPG</span>
+    <p class="footer-role">루트 · 전주대 생활권 혼잡도 지도</p>
+    <div class="footer-links">
+      <a href="https://jeonju-crowd-map.pages.dev">jeonju-crowd-map.pages.dev</a>
+      <a href="https://github.com/JJPG-team/jeonju-crowd-map">github.com/JJPG-team</a>
+      <a href="mailto:example@example.com">[연락처 이메일]</a>
+    </div>
+    <div class="footer-bottom">
+      <span>JJPG</span>
+      <span>[해커톤 일자]</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var cards = document.querySelectorAll('.card');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      cards.forEach(function (c) { io.observe(c); });
+    } else {
+      cards.forEach(function (c) { c.classList.add('in-view'); });
+    }
+
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.catnav a'));
+    var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    if ('IntersectionObserver' in window) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var idx = sections.indexOf(entry.target);
+          if (idx === -1) return;
+          if (entry.isIntersecting) {
+            links.forEach(function (l) { l.classList.remove('active'); });
+            links[idx].classList.add('active');
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      sections.forEach(function (s) { if (s) spy.observe(s); });
+    }
+  })();
+</script>
+</body>
+</html>
