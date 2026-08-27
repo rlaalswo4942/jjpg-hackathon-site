@@ -179,7 +179,7 @@ h1.name {
 }
 
 .role {
-  font-size: clamp(1.7rem, 5.2vw, 2.6rem);
+  font-size: clamp(1.05rem, 6.8vw, 2.6rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -611,4 +611,5 @@ footer .footer-bottom {
 @media (max-width: 520px) {
   .hero-top { margin-bottom: 2rem; }
   .shot-strip { grid-template-columns: 1fr; }
+  .role { white-space: normal; }
 }
