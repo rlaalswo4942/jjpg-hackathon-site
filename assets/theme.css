@@ -182,15 +182,13 @@ h1.name {
   color: var(--text-3);
   margin: 2rem 0 0;
   padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--line);
 }
 
 /* ---------- Work intro ---------- */
 .work-intro {
   margin-top: 2.5rem;
-  padding: 2rem 0 2.4rem;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--ink);
+  padding: 2.2rem 0 2.6rem;
+  background: var(--surface-soft);
 }
 .work-intro h2 {
   font-size: clamp(1.4rem, 3.6vw, 1.9rem);
@@ -220,9 +218,7 @@ section.category {
   display: flex;
   align-items: baseline;
   gap: 0.9rem;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 0.7rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.6rem;
 }
 .category-head .cat-num {
   font-family: "SF Mono", ui-monospace, "JetBrains Mono", Consolas, monospace;
