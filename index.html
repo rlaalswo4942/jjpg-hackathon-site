@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="assets/theme.css?v=20260827a">
+<link rel="stylesheet" href="assets/theme.css?v=20260827b">
 </head>
 <body>
 
@@ -18,9 +18,11 @@
     <div class="catnav-scroll">
       <a href="#sec-overview">개요</a>
       <a href="#sec-problem">문제</a>
-      <a href="#sec-solution">솔루션</a>
+      <a href="#sec-solution">해결 방법</a>
       <a href="#sec-features">핵심 기능</a>
-      <a href="#sec-stack">기술 스택</a>
+      <a href="#sec-stack">사용 기술</a>
+      <a href="#sec-data">데이터 원칙</a>
+      <a href="#sec-future">향후 확장</a>
       <a href="#sec-team">팀</a>
     </div>
   </div>
@@ -41,7 +43,7 @@
       <span class="name-en">전주대 생활권 혼잡도 지도</span>
     </h1>
     <p class="role">다음 수업까지, 어디가 가장 낫습니까</p>
-    <p class="pitch">전주대학교 생활권의 혼잡도를 블록 단위로 보여주고, 시간표를 등록하면 <span class="hl">다음 수업 전 들를 만한 곳</span>을 이동시간·대기·혼잡도까지 계산해 추천합니다.</p>
+    <p class="pitch">전주대학교 생활권의 혼잡도를 블록 단위로 보여주고, 시간표를 등록하면 <span class="hl">다음 수업 전 들를 만한 곳</span>을 이동시간·대기·혼잡도까지 계산해 추천합니다. JJPG는 장소를 단순히 찾아주는 서비스가 아니라, <span class="hl">지금 다녀와도 되는지를 판단해주는 서비스</span>입니다.</p>
     <p class="meta-line mono">루트 · React 19 · TypeScript · Leaflet · OSRM</p>
   </header>
 </div>
@@ -70,52 +72,68 @@
         <span class="cat-num mono">01</span>
         <h2>문제</h2>
       </div>
-      <div class="grid">
-        <a class="card" href="jjpg.html#sec-problem">
-          <div class="card-top">
-            <span class="card-num mono">01</span>
-            <span class="status outline">공강 시간</span>
-          </div>
-          <h3 class="card-title">도착해서야 만석을 안다</h3>
-          <p class="card-tags mono"><span>혼잡</span><span>재이동</span></p>
-          <p class="card-desc">점심시간이나 짧은 공강에 식당·카페에 도착한 뒤에야 <span class="hl">혼잡·만석을 알게 되고</span>, 다시 다른 곳으로 이동하며 시간을 더 쓴다.</p>
-        </a>
-        <a class="card" href="jjpg.html#sec-problem">
-          <div class="card-top">
-            <span class="card-num mono">02</span>
-            <span class="status outline">시간 판단</span>
-          </div>
-          <h3 class="card-title">"갈 수 있는가"를 미리 알 수 없다</h3>
-          <p class="card-tags mono"><span>이동시간</span><span>불확실성</span></p>
-          <p class="card-desc">가까워 보이는 곳이 다음 강의 건물과 반대 방향일 수 있고, 대기·이용시간까지 더하면 <span class="hl">다음 수업에 늦을지</span> 미리 판단하기 어렵다. 기존 지도는 위치와 리뷰는 보여줘도 "지금 실제로 이용하기 좋은가"엔 답하지 않는다.</p>
-        </a>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">01</span></div>
+        <h3 class="card-title">도착해야 혼잡을 알 수 있다</h3>
+        <p class="card-tags mono"><span>혼잡</span><span>재이동</span></p>
+        <p>점심시간이나 짧은 공강 시간에는 식당과 카페에 직접 도착한 뒤에야 <span class="hl">혼잡 여부를 알게 됩니다</span>. 이용이 어렵다면 다시 다른 장소로 이동해야 하고, 그만큼 공강 시간이 줄어듭니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">02</span></div>
+        <h3 class="card-title">지금 갈 수 있는지 미리 알기 어렵다</h3>
+        <p class="card-tags mono"><span>이동시간</span><span>불확실성</span></p>
+        <p>가까워 보이는 장소도 다음 수업 건물과 반대 방향에 있을 수 있습니다. 이동시간과 대기시간까지 더하면 <span class="hl">다음 수업에 늦을 수 있지만</span>, 기존 지도와 리뷰 정보만으로는 이를 미리 판단하기 어렵습니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">03</span></div>
+        <h3 class="card-title">필요한 정보가 여러 곳에 흩어져 있다</h3>
+        <p class="card-tags mono"><span>지도</span><span>시간표</span><span>혼잡도</span></p>
+        <p>장소 위치는 지도에서 확인하고, 영업 정보는 검색 서비스에서 확인하며, 다음 수업 시간과 강의실은 별도로 확인해야 합니다. 각 정보를 직접 비교해야 하므로 최종 판단에 시간이 걸립니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">04</span></div>
+        <h3 class="card-title">검색되는 장소와 이용 가능한 장소는 다르다</h3>
+        <p class="card-tags mono"><span>검색 결과</span><span>실제 이용 가능성</span></p>
+        <p>검색되는 장소라고 해서 현재 이용하기 좋은 장소인 것은 아닙니다. 혼잡도, 이동 방향, 남은 시간, 예상 대기시간을 함께 확인해야 <span class="hl">실제로 방문할 수 있는 장소인지</span> 판단할 수 있습니다.</p>
       </div>
     </section>
 
     <section class="category" id="sec-solution">
       <div class="category-head">
         <span class="cat-num mono">02</span>
-        <h2>솔루션</h2>
+        <h2>해결 방법</h2>
       </div>
-      <div class="grid">
-        <a class="card" href="jjpg.html#sec-solution">
-          <div class="card-top">
-            <span class="card-num mono">01</span>
-            <span class="status filled">MVP</span>
-          </div>
-          <h3 class="card-title">출발지 → 상가 → 다음 강의 건물, 전체 여정 계산</h3>
-          <p class="card-tags mono"><span>이동시간</span><span>대기시간</span><span>이용시간</span><span>안전 여유시간</span></p>
-          <p class="card-desc">단순 최단거리 추천이 아니라, 상가에 들렀다가 다음 강의까지 갈 수 있는 <span class="hl">전체 여정의 총 필요시간</span>을 계산해 추천 순위를 정한다. 시간이 부족한 장소도 지우지 않고 점수만 낮춰 하위에 남긴다.</p>
-        </a>
-        <a class="card" href="jjpg.html#sec-solution">
-          <div class="card-top">
-            <span class="card-num mono">02</span>
-            <span class="status filled">차별성</span>
-          </div>
-          <h3 class="card-title">검증되지 않은 데이터는 넣지 않는다</h3>
-          <p class="card-tags mono"><span>OSM</span><span>Nominatim</span><span>Overpass</span></p>
-          <p class="card-desc"><span class="hl">있어 보이는 데이터보다 확인 가능한 데이터</span>를 남긴다는 원칙으로 상호 16곳을 OSM·팀 상권조사·Nominatim 역지오코딩과 교차검증했고, 건물 284개는 단일 소스(campusBuildingFootprints.json)로만 관리해 좌표 불일치를 제거했다. 혼잡도·대기시간은 Mock 데이터이며 화면에 "시연" 배지로 명시한다.</p>
-        </a>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">01</span></div>
+        <h3 class="card-title">출발지부터 다음 수업까지 전체 시간을 계산한다</h3>
+        <p class="card-tags mono"><span>이동시간</span><span>대기시간</span><span>이용시간</span><span>안전 여유시간</span></p>
+        <p>단순히 가장 가까운 장소를 추천하지 않습니다. 현재 출발지에서 장소까지 이동하는 시간, 예상 대기시간, 식사·이용시간, 다음 수업 건물까지 이동하는 시간을 함께 계산해 <span class="hl">추천 순위</span>를 정합니다. 시간이 부족한 장소도 목록에서 삭제하지 않고, 이용 가능성이 낮은 순서로 배치해 사용자가 직접 선택할 수 있도록 합니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">02</span></div>
+        <h3 class="card-title">확인되지 않은 정보는 실제 정보처럼 보여주지 않는다</h3>
+        <p class="card-tags mono"><span>장소 데이터 검증</span></p>
+        <p>확인할 수 없는 장소와 임의로 입력된 데이터는 실제 정보처럼 노출하지 않습니다. OpenStreetMap, Nominatim, Overpass를 활용해 장소와 좌표를 확인하고, 건물 좌표는 <span class="hl">campusBuildingFootprints.json</span>이라는 하나의 기준 파일로 관리했습니다. 확인되지 않은 정보는 제외하거나 시연용 데이터임을 표시합니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">03</span></div>
+        <h3 class="card-title">시간표와 생활권 지도를 연결한다</h3>
+        <p class="card-tags mono"><span>다음 수업</span><span>강의실</span><span>이동경로</span></p>
+        <p>사용자의 시간표에서 다음 수업과 강의실을 확인하고, 현재 위치와 장소의 위치를 함께 비교합니다. "어디에 있는가"가 아니라 <span class="hl">"다음 수업 전까지 실제로 다녀올 수 있는가"</span>를 기준으로 장소를 추천합니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">04</span></div>
+        <h3 class="card-title">사용자가 최종적으로 판단할 수 있도록 돕는다</h3>
+        <p class="card-tags mono"><span>추천</span><span>주의 필요</span><span>시간 초과 예상</span></p>
+        <p>추천 결과는 인공지능이 임의로 결정하는 방식이 아니라, 정해진 계산 규칙을 기반으로 산출됩니다. 각 장소의 거리, 혼잡도, 예상 대기시간, 다음 수업까지 남은 시간을 조합해 순위를 정하고, 사용자가 최종 결정을 내릴 수 있도록 판단 근거를 함께 제공합니다.</p>
       </div>
     </section>
 
@@ -124,112 +142,179 @@
         <span class="cat-num mono">03</span>
         <h2>핵심 기능</h2>
       </div>
-      <div class="grid">
 
-        <a class="card" href="jjpg.html#sec-features">
-          <div class="card-top">
-            <span class="card-num mono">01</span>
-            <span class="status filled">구현됨</span>
-          </div>
-          <h3 class="card-title">혼잡도 지도</h3>
-          <p class="card-tags mono"><span>Leaflet</span><span>6개 블록</span></p>
-          <p class="card-desc">생활권 상권 블록의 혼잡도를 지도 폴리곤과 목록 배지(<span class="hl">여유=초록/보통=노랑/혼잡=빨강</span>)로 표시한다.</p>
-          <p class="card-more mono">자세히 보기 →</p>
-        </a>
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">01</span><span class="status filled">구현됨</span></div>
+        <h3 class="card-title">혼잡도 지도</h3>
+        <p class="card-tags mono"><span>Leaflet</span><span>6개 생활권 구역</span></p>
+        <p>전주대학교 캠퍼스와 주변 생활권을 6개 구역으로 나누어 혼잡도를 지도와 목록 형태로 표시합니다. 혼잡도는 여유, 보통, 혼잡 단계로 구분해 주변 상황을 빠르게 파악할 수 있도록 구성했습니다. <span class="hl">현재 혼잡도는 실시간 통신사·센서 데이터가 아닌 시연용 데이터</span>입니다.</p>
+      </div>
 
-        <a class="card" href="jjpg.html#sec-features">
-          <div class="card-top">
-            <span class="card-num mono">02</span>
-            <span class="status filled">구현됨</span>
-          </div>
-          <h3 class="card-title">시간표 & 다음 수업 추천</h3>
-          <p class="card-tags mono"><span>tesseract.js</span><span>OCR</span></p>
-          <p class="card-desc">시간표를 수동 입력하거나 이미지 업로드로 자동 인식하고, <span class="hl">"다음 수업까지 갈 수 있는 곳"</span>을 시간 여유 기준으로 추천한다. 캠퍼스 건물(강의동)은 추천 후보에서 제외된다.</p>
-          <p class="card-more mono">자세히 보기 →</p>
-        </a>
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">02</span><span class="status filled">구현됨</span></div>
+        <h3 class="card-title">시간표 입력 및 다음 수업 추천</h3>
+        <p class="card-tags mono"><span>Tesseract.js</span><span>이미지 문자 인식</span></p>
+        <p>시간표를 직접 입력하거나 시간표 이미지를 업로드해 자동으로 인식할 수 있습니다. 인식된 시간표를 바탕으로 <span class="hl">다음 수업까지 갈 수 있는 곳</span>을 추천합니다. 시간표는 연도와 학기별로 관리할 수 있도록 구성했습니다.</p>
+      </div>
 
-        <a class="card" href="jjpg.html#sec-features">
-          <div class="card-top">
-            <span class="card-num mono">03</span>
-            <span class="status filled">구현됨</span>
-          </div>
-          <h3 class="card-title">실제 보행 경로 안내</h3>
-          <p class="card-tags mono"><span>OSRM</span><span>routing-machine</span></p>
-          <p class="card-desc">leaflet-routing-machine + OSRM 보행자 프로파일로 <span class="hl">실제 경로</span>를 계산한다. 장소를 선택하면 자동으로 목적지가 되어 경로가 그려진다.</p>
-          <p class="card-more mono">자세히 보기 →</p>
-        </a>
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">03</span><span class="status filled">구현됨</span></div>
+        <h3 class="card-title">실제 보행 경로 안내</h3>
+        <p class="card-tags mono"><span>OSRM</span><span>routing-machine</span></p>
+        <p>출발지와 목적지를 선택하면 <span class="hl">실제 보행자 경로</span>를 계산해 지도에 표시합니다. 장소까지 이동하는 경로뿐만 아니라, 장소에서 다음 수업 건물까지 이동하는 경로도 함께 고려할 수 있습니다.</p>
+      </div>
 
-        <a class="card" href="jjpg.html#sec-features">
-          <div class="card-top">
-            <span class="card-num mono">04</span>
-            <span class="status filled">구현됨</span>
-          </div>
-          <h3 class="card-title">자유 출발지 선택</h3>
-          <p class="card-tags mono"><span>GPS</span><span>RouteOrigin</span></p>
-          <p class="card-desc">현재 위치 / 지도에서 선택 / 검색한 장소 / 캠퍼스 건물, 네 가지 출발지 중 선택 가능. <span class="hl">GPS가 실패해도 조용히 대체하지 않고</span> 실패 이유를 보여준다.</p>
-          <p class="card-more mono">자세히 보기 →</p>
-        </a>
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">04</span><span class="status filled">구현됨</span></div>
+        <h3 class="card-title">자유로운 출발지 선택</h3>
+        <p class="card-tags mono"><span>GPS</span><span>RouteOrigin</span></p>
+        <p>현재 위치, 지도에서 직접 선택한 위치, 검색한 장소, 캠퍼스 건물을 출발지로 지정할 수 있습니다. <span class="hl">위치 확인에 실패하거나 부정확한 경우에는 임의로 대체하지 않고</span> 실패 원인을 안내해 다른 출발지를 선택할 수 있도록 했습니다.</p>
+      </div>
 
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">05</span><span class="status filled">구현됨</span></div>
+        <h3 class="card-title">장소 검색 및 조건별 필터</h3>
+        <p class="card-tags mono"><span>음식 종류</span><span>장소 유형</span><span>생활 편의시설</span></p>
+        <p>식사, 카페, 편의점, 교내 시설 등 장소 유형별로 확인할 수 있습니다. 원하는 음식이나 메뉴를 검색하면 해당 메뉴를 제공하는 장소를 우선 표시합니다. 식사나 커피 등 이용 목적에 맞는 편의 기능이 없는 교내 건물은 관련 추천 목록에서 제외합니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">06</span><span class="status filled">구현됨</span></div>
+        <h3 class="card-title">추천 순위 및 정렬</h3>
+        <p class="card-tags mono"><span>가까운 순</span><span>한산한 순</span><span>혼잡한 순</span><span>추천 순</span></p>
+        <p>장소를 가까운 순, 한산한 순, 혼잡한 순, 추천 순으로 정렬할 수 있습니다. 추천 순위는 거리뿐만 아니라 다음 수업까지 남은 시간, 이동시간, 예상 대기시간, 혼잡도와 이동 방향을 함께 고려해 결정됩니다. 시간이 부족한 장소도 완전히 삭제하지 않고 후순위에 배치합니다.</p>
       </div>
     </section>
 
     <section class="category" id="sec-stack">
       <div class="category-head">
         <span class="cat-num mono">04</span>
-        <h2>기술 스택</h2>
+        <h2>사용 기술</h2>
       </div>
-      <div class="grid">
-        <a class="card" href="jjpg.html#sec-stack">
-          <div class="card-top">
-            <span class="card-num mono">01</span>
-          </div>
-          <h3 class="card-title">Frontend</h3>
-          <p class="card-tags mono"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind CSS v4</span><span>Zustand</span></p>
-        </a>
-        <a class="card" href="jjpg.html#sec-stack">
-          <div class="card-top">
-            <span class="card-num mono">02</span>
-          </div>
-          <h3 class="card-title">지도 · 경로</h3>
-          <p class="card-tags mono"><span>Leaflet</span><span>react-leaflet</span><span>leaflet-routing-machine</span><span>OSRM</span></p>
-        </a>
-        <a class="card" href="jjpg.html#sec-stack">
-          <div class="card-top">
-            <span class="card-num mono">03</span>
-          </div>
-          <h3 class="card-title">데이터 · 배포</h3>
-          <p class="card-tags mono"><span>tesseract.js</span><span>Cloudflare Pages</span><span>Wrangler</span></p>
-        </a>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">01</span></div>
+        <h3 class="card-title">웹 화면과 상태 관리</h3>
+        <p class="card-tags mono"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind CSS v4</span><span>Zustand</span></p>
+        <p>React와 TypeScript를 기반으로 화면과 기능을 구성했습니다. Vite로 개발 환경과 제작 과정을 관리하고, Tailwind CSS로 반응형 화면을 구현했습니다. Zustand를 활용해 지도, 시간표, 추천 결과와 같은 주요 상태를 관리합니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">02</span></div>
+        <h3 class="card-title">지도와 실제 이동경로</h3>
+        <p class="card-tags mono"><span>Leaflet</span><span>React-Leaflet</span><span>Leaflet Routing Machine</span><span>OSRM</span></p>
+        <p>Leaflet과 React-Leaflet으로 지도와 장소 정보를 표시합니다. Leaflet Routing Machine과 OSRM을 활용해 출발지와 목적지 사이의 보행 경로를 계산합니다. 추천 순위 계산과 실제 경로 안내 기능은 서로 분리해 관리했습니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">03</span></div>
+        <h3 class="card-title">데이터 확인과 웹 서비스 배포</h3>
+        <p class="card-tags mono"><span>Tesseract.js</span><span>OpenStreetMap</span><span>Nominatim</span><span>Overpass</span><span>Cloudflare Pages</span><span>Wrangler</span></p>
+        <p>Tesseract.js를 사용해 시간표 이미지에서 수업 정보를 인식합니다. 장소와 좌표 검증에는 OpenStreetMap, Nominatim, Overpass를 활용했습니다. 웹 서비스는 Cloudflare Pages에 배포하고 Wrangler로 관리합니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">04</span></div>
+        <h3 class="card-title">인공지능 협업과 규칙 기반 추천</h3>
+        <p class="card-tags mono"><span>Claude Code</span><span>GitHub</span><span>규칙 기반 추천</span></p>
+        <p>Claude Code는 구현과 반복 수정에 활용한 개발 협업 도구입니다. 문제 정의, 기능 범위 결정, 데이터 검증, 구현 결과 확인은 사람이 직접 수행했습니다. <span class="hl">추천 결과 역시 인공지능이 임의로 판단하는 구조가 아니라</span>, 명시된 규칙과 데이터에 따라 계산됩니다.</p>
+      </div>
+    </section>
+
+    <section class="category" id="sec-data">
+      <div class="category-head">
+        <span class="cat-num mono">05</span>
+        <h2>데이터 한계와 검증 원칙</h2>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">01</span></div>
+        <h3 class="card-title">현재는 시연용 데이터 중심이다</h3>
+        <p class="card-tags mono"><span>시연용 데이터</span></p>
+        <p>현재 혼잡도와 일부 대기시간·체류시간·이동시간은 실제 센서나 통신사 데이터가 아닌 <span class="hl">시연용 또는 추정 데이터</span>입니다. 따라서 실제 사용자 수, 정확도, 시간 절감 효과를 검증된 성과처럼 표현하지 않습니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">02</span></div>
+        <h3 class="card-title">데이터의 상태를 구분한다</h3>
+        <p class="card-tags mono"><span>데이터 상태 구분</span></p>
+        <p>데이터는 실제로 확인된 정보, 추정된 정보, 과거 조사 정보, 시연용 정보, 확인되지 않은 정보로 구분해 관리합니다. 확인되지 않은 장소와 좌표는 삭제하거나 보류하고, 필요한 경우 별도 상태로 표시합니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">03</span></div>
+        <h3 class="card-title">개발 과정에서 발견한 문제를 수정했다</h3>
+        <p class="card-tags mono"><span>개발 과정의 검증</span></p>
+        <p>개발 과정에서 GPS의 부정확 문제와 지도 기능 충돌 문제를 재현하고 수정했습니다. 또한 건물 좌표가 여러 파일에 분산되지 않도록 <span class="hl">하나의 기준 파일로 통합</span>하고, 추천 순위 계산과 실제 경로 안내 기능을 분리했습니다.</p>
+      </div>
+    </section>
+
+    <section class="category" id="sec-future">
+      <div class="category-head">
+        <span class="cat-num mono">06</span>
+        <h2>향후 확장 방향</h2>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">01</span><span class="status faint">향후 확장</span></div>
+        <h3 class="card-title">사용자 참여형 혼잡도 데이터</h3>
+        <p class="card-tags mono"><span>사용자 참여</span></p>
+        <p>사용자 제보, 방문 확인, 이용 후 평가를 통해 실제 혼잡도 데이터를 축적할 수 있습니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">02</span><span class="status faint">향후 확장</span></div>
+        <h3 class="card-title">매장 참여 기반 정보 제공</h3>
+        <p class="card-tags mono"><span>매장 참여</span></p>
+        <p>매장이 직접 혼잡도와 남은 좌석 정보를 제공하면 현재의 추정 데이터를 보완할 수 있습니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">03</span><span class="status faint">향후 확장</span></div>
+        <h3 class="card-title">센서와 무선 신호 연동</h3>
+        <p class="card-tags mono"><span>센서</span><span>무선 신호</span></p>
+        <p>향후 대학 또는 매장과 협력할 경우 와이파이, 블루투스, 센서 데이터를 활용해 혼잡도 정확도를 높일 수 있습니다.</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">04</span><span class="status faint">향후 확장</span></div>
+        <h3 class="card-title">예약 및 매장 관리 서비스 확장</h3>
+        <p class="card-tags mono"><span>예약</span><span>매장 관리</span></p>
+        <p>남은 좌석 정보가 안정적으로 축적되면 장소 예약 기능, 매장용 관리 도구, 구독형 서비스로 확장할 수 있습니다.</p>
       </div>
     </section>
 
     <section class="category" id="sec-team">
       <div class="category-head">
-        <span class="cat-num mono">05</span>
+        <span class="cat-num mono">07</span>
         <h2>팀</h2>
       </div>
-      <div class="grid">
-        <a class="card" href="#">
-          <div class="card-top">
-            <span class="card-num mono">01</span>
-          </div>
-          <h3 class="card-title">[이름]</h3>
-          <p class="card-tags mono"><span>[역할]</span></p>
-          <p class="card-desc">[한 줄 소개]</p>
-        </a>
-        <a class="card" href="#">
-          <div class="card-top">
-            <span class="card-num mono">02</span>
-          </div>
-          <h3 class="card-title">[이름]</h3>
-          <p class="card-tags mono"><span>[역할]</span></p>
-          <p class="card-desc">[한 줄 소개]</p>
-        </a>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">01</span></div>
+        <h3 class="card-title">[이름]</h3>
+        <p class="card-tags mono"><span>[역할]</span></p>
+        <p>[한 줄 소개]</p>
+      </div>
+
+      <div class="d-block">
+        <div class="card-top"><span class="card-num mono">02</span></div>
+        <h3 class="card-title">[이름]</h3>
+        <p class="card-tags mono"><span>[역할]</span></p>
+        <p>[한 줄 소개]</p>
       </div>
     </section>
 
   </main>
 </div>
+
+<section class="work-intro">
+  <div class="wrap">
+    <p class="eyebrow mono">Summary</p>
+    <h2>JJPG가 해결하는 문제</h2>
+    <p style="max-width: 42rem; color: var(--text-2); line-height: 1.65; font-size: 0.95rem; margin: 0;">JJPG는 전주대학교 학생의 시간표와 생활권 데이터를 연결해, <span class="hl">다음 수업 전 실제로 이용 가능한 장소를 판단</span>하도록 돕는 의사결정 지원 서비스입니다.</p>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
@@ -249,7 +334,7 @@
 
 <script>
   (function () {
-    var cards = document.querySelectorAll('.card');
+    var blocks = document.querySelectorAll('.d-block');
     if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
@@ -259,9 +344,9 @@
           }
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-      cards.forEach(function (c) { io.observe(c); });
+      blocks.forEach(function (b) { io.observe(b); });
     } else {
-      cards.forEach(function (c) { c.classList.add('in-view'); });
+      blocks.forEach(function (b) { b.classList.add('in-view'); });
     }
 
     var links = Array.prototype.slice.call(document.querySelectorAll('nav.catnav a'));
