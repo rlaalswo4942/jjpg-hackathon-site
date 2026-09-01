@@ -51,6 +51,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   margin: 0 auto;
   padding: 0 1.5rem 6rem;
 }
+.hero-wrap { padding-bottom: 1rem; }
 
 svg.qr-motif rect { fill: currentColor; }
 
@@ -186,7 +187,7 @@ h1.name {
 
 /* ---------- Work intro ---------- */
 .work-intro {
-  margin-top: 2.75rem;
+  margin-top: 1.25rem;
   padding: 0;
 }
 .work-intro h2 {
