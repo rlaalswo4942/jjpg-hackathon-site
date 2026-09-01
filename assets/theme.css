@@ -201,7 +201,8 @@ h1.name {
   align-items: center;
   gap: 0.5rem 0.7rem;
   font-family: "SF Mono", ui-monospace, "JetBrains Mono", Consolas, monospace;
-  font-size: 0.72rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   letter-spacing: 0.03em;
   color: var(--text-2);
 }
