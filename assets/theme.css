@@ -186,9 +186,8 @@ h1.name {
 
 /* ---------- Work intro ---------- */
 .work-intro {
-  margin-top: 2.5rem;
-  padding: 2.2rem 0 2.6rem;
-  background: var(--surface-soft);
+  margin-top: 2.75rem;
+  padding: 0;
 }
 .work-intro h2 {
   font-size: clamp(1.4rem, 3.6vw, 1.9rem);
