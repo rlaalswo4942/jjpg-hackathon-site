@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="assets/theme.css?v=20260827f">
+<link rel="stylesheet" href="assets/theme.css?v=20260827g">
 </head>
 <body>
 
@@ -45,10 +45,6 @@
     <p class="role">다음 수업까지, 어디가 가장 낫습니까</p>
     <p class="pitch">전주대학교 생활권의 혼잡도를 블록 단위로 보여주고, 시간표를 등록하면 <span class="hl">다음 수업 전 들를 만한 곳</span>을 이동시간·대기·혼잡도까지 계산해 추천합니다. JJPG는 장소를 단순히 찾아주는 서비스가 아니라, <span class="hl">지금 다녀와도 되는지를 판단해주는 서비스</span>입니다.</p>
     <p class="meta-line mono">루트 · React 19 · TypeScript · Leaflet · OSRM</p>
-    <p class="gloss"><b>React</b>: 화면을 만드는 데 널리 쓰이는 자바스크립트 도구</p>
-    <p class="gloss"><b>TypeScript</b>: 오류를 줄여주는 자바스크립트의 확장 언어</p>
-    <p class="gloss"><b>Leaflet</b>: 지도를 화면에 표시해주는 도구</p>
-    <p class="gloss"><b>OSRM</b>: 실제 도로·보행로를 따라 길찾기 경로를 계산해주는 서비스</p>
   </header>
 </div>
 
@@ -156,6 +152,7 @@
         <h3 class="card-title">혼잡도 지도</h3>
         <p class="card-tags mono"><span>Leaflet</span><span>6개 생활권 구역</span></p>
         <p>전주대학교 캠퍼스와 주변 생활권을 6개 구역으로 나누어 혼잡도를 지도와 목록 형태로 표시합니다. 혼잡도는 여유, 보통, 혼잡 단계로 구분해 주변 상황을 빠르게 파악할 수 있도록 구성했습니다. <span class="hl">현재 혼잡도는 실시간 통신사·센서 데이터가 아닌 시연용 데이터</span>입니다.</p>
+        <p class="gloss"><b>Leaflet</b>: 지도를 화면에 표시해주는 도구</p>
       </div>
 
       <div class="d-block">
@@ -171,6 +168,7 @@
         <h3 class="card-title">실제 보행 경로 안내</h3>
         <p class="card-tags mono"><span>OSRM</span><span>경로 안내</span></p>
         <p>출발지와 목적지를 선택하면 <span class="hl">실제 보행자 경로</span>를 계산해 지도에 표시합니다. 장소까지 이동하는 경로뿐만 아니라, 장소에서 다음 수업 건물까지 이동하는 경로도 함께 고려할 수 있습니다.</p>
+        <p class="gloss"><b>OSRM</b>: 실제 도로·보행로를 따라 길찾기 경로를 계산해주는 서비스</p>
       </div>
 
       <div class="d-block">
@@ -207,6 +205,8 @@
         <h3 class="card-title">웹 화면과 상태 관리</h3>
         <p class="card-tags mono"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind CSS v4</span><span>Zustand</span></p>
         <p>React와 TypeScript를 기반으로 화면과 기능을 구성했습니다. Vite로 개발 환경과 제작 과정을 관리하고, Tailwind CSS로 반응형 화면을 구현했습니다. Zustand를 활용해 지도, 시간표, 추천 결과와 같은 주요 상태를 관리합니다.</p>
+        <p class="gloss"><b>React</b>: 화면을 만드는 데 널리 쓰이는 자바스크립트 도구</p>
+        <p class="gloss"><b>TypeScript</b>: 오류를 줄여주는 자바스크립트의 확장 언어</p>
         <p class="gloss"><b>Vite</b>: 개발 중인 화면을 빠르게 미리 보고 빌드해주는 도구</p>
         <p class="gloss"><b>Tailwind CSS</b>: 미리 만들어진 스타일 조각으로 화면 디자인을 빠르게 입힐 수 있는 도구</p>
         <p class="gloss"><b>Zustand</b>: 여러 화면이 함께 쓰는 정보(상태)를 관리해주는 도구</p>
