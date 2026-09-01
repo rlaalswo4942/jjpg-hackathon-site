@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="assets/theme.css?v=20260827b">
+<link rel="stylesheet" href="assets/theme.css?v=20260827c">
 </head>
 <body>
 
@@ -45,6 +45,7 @@
     <p class="role">다음 수업까지, 어디가 가장 낫습니까</p>
     <p class="pitch">전주대학교 생활권의 혼잡도를 블록 단위로 보여주고, 시간표를 등록하면 <span class="hl">다음 수업 전 들를 만한 곳</span>을 이동시간·대기·혼잡도까지 계산해 추천합니다. JJPG는 장소를 단순히 찾아주는 서비스가 아니라, <span class="hl">지금 다녀와도 되는지를 판단해주는 서비스</span>입니다.</p>
     <p class="meta-line mono">루트 · React 19 · TypeScript · Leaflet · OSRM</p>
+    <p class="gloss"><b>React</b>: 화면을 만드는 데 널리 쓰이는 자바스크립트 도구 · <b>TypeScript</b>: 오류를 줄여주는 자바스크립트의 확장 언어 · <b>Leaflet</b>: 지도를 화면에 표시해주는 도구 · <b>OSRM</b>: 실제 도로·보행로를 따라 길찾기 경로를 계산해주는 서비스</p>
   </header>
 </div>
 
@@ -120,6 +121,7 @@
         <h3 class="card-title">확인되지 않은 정보는 실제 정보처럼 보여주지 않는다</h3>
         <p class="card-tags mono"><span>장소 데이터 검증</span></p>
         <p>확인할 수 없는 장소와 임의로 입력된 데이터는 실제 정보처럼 노출하지 않습니다. OpenStreetMap, Nominatim, Overpass를 활용해 장소와 좌표를 확인하고, 건물 좌표는 <span class="hl">campusBuildingFootprints.json</span>이라는 하나의 기준 파일로 관리했습니다. 확인되지 않은 정보는 제외하거나 시연용 데이터임을 표시합니다.</p>
+        <p class="gloss"><b>OpenStreetMap</b>: 전 세계 지도 정보를 누구나 만들고 수정하는 공개 지도 데이터베이스 · <b>Nominatim</b>: 주소나 장소 이름을 좌표로 바꿔주는 검색 도구 · <b>Overpass</b>: 지도 데이터베이스에서 원하는 정보만 뽑아오는 조회 도구 · <b>campusBuildingFootprints.json</b>: 캠퍼스 건물들의 위치와 모양을 모아둔 데이터 파일</p>
       </div>
 
       <div class="d-block">
@@ -155,19 +157,20 @@
         <h3 class="card-title">시간표 입력 및 다음 수업 추천</h3>
         <p class="card-tags mono"><span>Tesseract.js</span><span>이미지 문자 인식</span></p>
         <p>시간표를 직접 입력하거나 시간표 이미지를 업로드해 자동으로 인식할 수 있습니다. 인식된 시간표를 바탕으로 <span class="hl">다음 수업까지 갈 수 있는 곳</span>을 추천합니다. 시간표는 연도와 학기별로 관리할 수 있도록 구성했습니다.</p>
+        <p class="gloss"><b>Tesseract.js</b>: 사진 속 글자를 읽어서 텍스트로 바꿔주는 문자 인식 도구</p>
       </div>
 
       <div class="d-block">
         <div class="card-top"><span class="card-num mono">03</span><span class="status filled">구현됨</span></div>
         <h3 class="card-title">실제 보행 경로 안내</h3>
-        <p class="card-tags mono"><span>OSRM</span><span>routing-machine</span></p>
+        <p class="card-tags mono"><span>OSRM</span><span>경로 안내</span></p>
         <p>출발지와 목적지를 선택하면 <span class="hl">실제 보행자 경로</span>를 계산해 지도에 표시합니다. 장소까지 이동하는 경로뿐만 아니라, 장소에서 다음 수업 건물까지 이동하는 경로도 함께 고려할 수 있습니다.</p>
       </div>
 
       <div class="d-block">
         <div class="card-top"><span class="card-num mono">04</span><span class="status filled">구현됨</span></div>
         <h3 class="card-title">자유로운 출발지 선택</h3>
-        <p class="card-tags mono"><span>GPS</span><span>RouteOrigin</span></p>
+        <p class="card-tags mono"><span>위성 위치 확인</span><span>출발지 설정</span></p>
         <p>현재 위치, 지도에서 직접 선택한 위치, 검색한 장소, 캠퍼스 건물을 출발지로 지정할 수 있습니다. <span class="hl">위치 확인에 실패하거나 부정확한 경우에는 임의로 대체하지 않고</span> 실패 원인을 안내해 다른 출발지를 선택할 수 있도록 했습니다.</p>
       </div>
 
@@ -197,6 +200,7 @@
         <h3 class="card-title">웹 화면과 상태 관리</h3>
         <p class="card-tags mono"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind CSS v4</span><span>Zustand</span></p>
         <p>React와 TypeScript를 기반으로 화면과 기능을 구성했습니다. Vite로 개발 환경과 제작 과정을 관리하고, Tailwind CSS로 반응형 화면을 구현했습니다. Zustand를 활용해 지도, 시간표, 추천 결과와 같은 주요 상태를 관리합니다.</p>
+        <p class="gloss"><b>Vite</b>: 개발 중인 화면을 빠르게 미리 보고 빌드해주는 도구 · <b>Tailwind CSS</b>: 미리 만들어진 스타일 조각으로 화면 디자인을 빠르게 입힐 수 있는 도구 · <b>Zustand</b>: 여러 화면이 함께 쓰는 정보(상태)를 관리해주는 도구</p>
       </div>
 
       <div class="d-block">
@@ -204,6 +208,7 @@
         <h3 class="card-title">지도와 실제 이동경로</h3>
         <p class="card-tags mono"><span>Leaflet</span><span>React-Leaflet</span><span>Leaflet Routing Machine</span><span>OSRM</span></p>
         <p>Leaflet과 React-Leaflet으로 지도와 장소 정보를 표시합니다. Leaflet Routing Machine과 OSRM을 활용해 출발지와 목적지 사이의 보행 경로를 계산합니다. 추천 순위 계산과 실제 경로 안내 기능은 서로 분리해 관리했습니다.</p>
+        <p class="gloss"><b>React-Leaflet</b>: React 화면 안에서 Leaflet 지도를 쉽게 쓸 수 있게 연결해주는 도구 · <b>Leaflet Routing Machine</b>: 지도 위에 실제 이동 경로를 그려주는 도구</p>
       </div>
 
       <div class="d-block">
@@ -211,6 +216,7 @@
         <h3 class="card-title">데이터 확인과 웹 서비스 배포</h3>
         <p class="card-tags mono"><span>Tesseract.js</span><span>OpenStreetMap</span><span>Nominatim</span><span>Overpass</span><span>Cloudflare Pages</span><span>Wrangler</span></p>
         <p>Tesseract.js를 사용해 시간표 이미지에서 수업 정보를 인식합니다. 장소와 좌표 검증에는 OpenStreetMap, Nominatim, Overpass를 활용했습니다. 웹 서비스는 Cloudflare Pages에 배포하고 Wrangler로 관리합니다.</p>
+        <p class="gloss"><b>Cloudflare Pages</b>: 만든 웹사이트를 인터넷에 무료로 올려 누구나 접속할 수 있게 해주는 서비스 · <b>Wrangler</b>: Cloudflare Pages에 사이트를 올리고 관리할 때 쓰는 명령어 도구</p>
       </div>
 
       <div class="d-block">
@@ -218,6 +224,7 @@
         <h3 class="card-title">인공지능 협업과 규칙 기반 추천</h3>
         <p class="card-tags mono"><span>Claude Code</span><span>GitHub</span><span>규칙 기반 추천</span></p>
         <p>Claude Code는 구현과 반복 수정에 활용한 개발 협업 도구입니다. 문제 정의, 기능 범위 결정, 데이터 검증, 구현 결과 확인은 사람이 직접 수행했습니다. <span class="hl">추천 결과 역시 인공지능이 임의로 판단하는 구조가 아니라</span>, 명시된 규칙과 데이터에 따라 계산됩니다.</p>
+        <p class="gloss"><b>Claude Code</b>: 개발자의 지시에 따라 코드를 작성·수정하는 인공지능 코딩 도구 · <b>GitHub</b>: 코드를 저장하고 여러 사람이 함께 관리할 수 있게 해주는 온라인 저장소 서비스</p>
       </div>
     </section>
 
@@ -245,7 +252,7 @@
         <div class="card-top"><span class="card-num mono">03</span></div>
         <h3 class="card-title">개발 과정에서 발견한 문제를 수정했다</h3>
         <p class="card-tags mono"><span>개발 과정의 검증</span></p>
-        <p>개발 과정에서 GPS의 부정확 문제와 지도 기능 충돌 문제를 재현하고 수정했습니다. 또한 건물 좌표가 여러 파일에 분산되지 않도록 <span class="hl">하나의 기준 파일로 통합</span>하고, 추천 순위 계산과 실제 경로 안내 기능을 분리했습니다.</p>
+        <p>개발 과정에서 위성 위치 확인 기능의 부정확 문제와 지도 기능 충돌 문제를 재현하고 수정했습니다. 또한 건물 좌표가 여러 파일에 분산되지 않도록 <span class="hl">하나의 기준 파일로 통합</span>하고, 추천 순위 계산과 실제 경로 안내 기능을 분리했습니다.</p>
       </div>
     </section>
 

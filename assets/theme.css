@@ -273,6 +273,18 @@ section.category {
   font-weight: 700;
 }
 
+.gloss {
+  font-size: 0.76rem;
+  color: var(--text-3);
+  line-height: 1.6;
+  margin: 0.7rem 0 0;
+  max-width: 42rem;
+}
+.gloss b {
+  font-weight: 600;
+  color: var(--text-2);
+}
+
 /* ---------- Status ---------- */
 .status {
   flex: none;
