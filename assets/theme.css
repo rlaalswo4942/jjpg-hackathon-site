@@ -354,6 +354,33 @@ p.gloss + p.gloss { margin-top: 0.15rem; }
 }
 .btn:hover { background: var(--accent); }
 
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  max-width: 30rem;
+}
+.feedback-form select,
+.feedback-form textarea {
+  font-family: inherit;
+  font-size: 0.88rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+  background: var(--bg);
+  color: var(--ink);
+  resize: vertical;
+}
+.feedback-form .btn {
+  align-self: flex-start;
+  border: none;
+}
+#feedback-form-status {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
 .feedback-controls {
   display: flex;
   flex-wrap: wrap;

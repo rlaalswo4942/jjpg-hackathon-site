@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%BA%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="assets/theme.css?v=20260827l">
+<link rel="stylesheet" href="assets/theme.css?v=20260827m">
 </head>
 <body>
 
@@ -309,9 +309,21 @@
 
       <div class="d-block">
         <p>이 프로젝트에 대한 의견이나 아이디어를 익명으로 남겨주세요. 이름·이메일은 수집하지 않습니다.</p>
-        <p style="margin-top: 1rem;">
-          <a class="btn" href="https://forms.gle/REPLACE_WITH_FORM_LINK" target="_blank" rel="noopener">의견 남기기 →</a>
-        </p>
+        <form id="feedback-form" class="feedback-form">
+          <select id="feedback-chapter-input" required>
+            <option value="" disabled selected>어떤 챕터에 대한 의견인가요?</option>
+            <option value="문제">문제</option>
+            <option value="해결 방법">해결 방법</option>
+            <option value="핵심 기능">핵심 기능</option>
+            <option value="사용 기술">사용 기술</option>
+            <option value="데이터 원칙">데이터 원칙</option>
+            <option value="향후 확장">향후 확장</option>
+            <option value="기타">기타</option>
+          </select>
+          <textarea id="feedback-text-input" rows="3" required placeholder="의견을 입력하세요"></textarea>
+          <button type="submit" class="btn">제출하기</button>
+          <p id="feedback-form-status" class="feedback-empty" hidden></p>
+        </form>
       </div>
 
       <div class="d-block">
@@ -397,54 +409,39 @@
   })();
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
   (function () {
-    // 구글 폼 응답 시트를 "웹에 게시"(CSV)한 URL로 교체하면 아래 목록이 동작합니다.
-    var CSV_URL = "REPLACE_WITH_PUBLISHED_CSV_URL";
+    // Supabase 프로젝트 설정(Settings → API)에서 값을 채우면 게시판이 동작합니다.
+    var SUPABASE_URL = "REPLACE_WITH_SUPABASE_URL";
+    var SUPABASE_ANON_KEY = "REPLACE_WITH_SUPABASE_ANON_KEY";
 
     var listEl = document.getElementById('feedback-list');
     var filterEl = document.getElementById('feedback-chapter-filter');
     var sortBtn = document.getElementById('feedback-sort-toggle');
+    var formEl = document.getElementById('feedback-form');
+    var chapterInput = document.getElementById('feedback-chapter-input');
+    var textInput = document.getElementById('feedback-text-input');
+    var statusEl = document.getElementById('feedback-form-status');
     if (!listEl || !filterEl || !sortBtn) return;
-    if (!CSV_URL || CSV_URL.indexOf('REPLACE_WITH') === 0) {
-      listEl.innerHTML = '<li class="feedback-empty">아직 의견 목록이 연결되지 않았습니다.</li>';
+
+    if (!SUPABASE_URL || SUPABASE_URL.indexOf('REPLACE_WITH') === 0) {
+      listEl.innerHTML = '<li class="feedback-empty">아직 의견 게시판이 연결되지 않았습니다.</li>';
+      if (formEl) formEl.hidden = true;
       return;
     }
 
+    var client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     var rows = [];
     var sortDesc = true;
-
-    function parseCSV(text) {
-      var lines = text.split(/\r?\n/).filter(function (l) { return l.length; });
-      var out = [];
-      for (var i = 1; i < lines.length; i++) { // 첫 줄(헤더) 제외
-        var line = lines[i];
-        var cells = [];
-        var cur = '';
-        var inQuotes = false;
-        for (var j = 0; j < line.length; j++) {
-          var ch = line[j];
-          if (inQuotes) {
-            if (ch === '"') {
-              if (line[j + 1] === '"') { cur += '"'; j++; }
-              else inQuotes = false;
-            } else cur += ch;
-          } else {
-            if (ch === '"') inQuotes = true;
-            else if (ch === ',') { cells.push(cur); cur = ''; }
-            else cur += ch;
-          }
-        }
-        cells.push(cur);
-        out.push(cells);
-      }
-      return out;
-    }
 
     function render() {
       var chapter = filterEl.value;
       var filtered = rows.filter(function (r) { return chapter === 'all' || r.chapter === chapter; });
-      filtered.sort(function (a, b) { return sortDesc ? b.time - a.time : a.time - b.time; });
+      filtered.sort(function (a, b) {
+        var d = new Date(a.created_at) - new Date(b.created_at);
+        return sortDesc ? -d : d;
+      });
 
       listEl.innerHTML = '';
       if (!filtered.length) {
@@ -456,39 +453,53 @@
         li.className = 'feedback-item';
         var meta = document.createElement('p');
         meta.className = 'feedback-meta mono';
-        meta.textContent = (r.chapter || '기타') + ' · ' + r.timeLabel;
+        meta.textContent = (r.chapter || '기타') + ' · ' + new Date(r.created_at).toLocaleString('ko-KR');
         var body = document.createElement('p');
-        body.textContent = r.text;
+        body.textContent = r.message;
         li.appendChild(meta);
         li.appendChild(body);
         listEl.appendChild(li);
       });
     }
 
-    fetch(CSV_URL)
-      .then(function (res) { return res.text(); })
-      .then(function (text) {
-        rows = parseCSV(text).map(function (cells) {
-          var timeLabel = (cells[0] || '').trim();
-          return {
-            timeLabel: timeLabel,
-            time: new Date(timeLabel).getTime() || 0,
-            chapter: (cells[1] || '기타').trim(),
-            text: (cells[2] || '').trim()
-          };
-        }).filter(function (r) { return r.text; });
-        render();
-      })
-      .catch(function () {
-        listEl.innerHTML = '<li class="feedback-empty">의견을 불러오지 못했습니다.</li>';
-      });
+    function load() {
+      client.from('feedback').select('*').order('created_at', { ascending: false })
+        .then(function (res) {
+          rows = res.data || [];
+          render();
+        });
+    }
 
+    load();
     filterEl.addEventListener('change', render);
     sortBtn.addEventListener('click', function () {
       sortDesc = !sortDesc;
       sortBtn.textContent = sortDesc ? '최신순' : '오래된순';
       render();
     });
+
+    if (formEl) {
+      formEl.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var chapter = chapterInput.value;
+        var message = textInput.value.trim();
+        if (!chapter || !message) return;
+        statusEl.hidden = false;
+        statusEl.textContent = '제출 중…';
+        client.from('feedback').insert({ chapter: chapter, message: message })
+          .then(function (res) {
+            if (res.error) {
+              statusEl.textContent = '제출에 실패했습니다.';
+              return;
+            }
+            statusEl.textContent = '제출됐습니다. 감사합니다!';
+            textInput.value = '';
+            chapterInput.selectedIndex = 0;
+            load();
+            setTimeout(function () { statusEl.hidden = true; }, 3000);
+          });
+      });
+    }
   })();
 </script>
 </body>
